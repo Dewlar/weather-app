@@ -11,7 +11,8 @@
     "lint:fix": "eslint \"./src/**/*.{ts,html}\" --fix",
     "format": "prettier --write ./src",
     "format:check": "prettier --check ./src",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "deploy": "ng deploy --base-href=https://dewlar.github.io/weather-app/"
   },
   "private": true,
   "dependencies": {
@@ -39,6 +40,7 @@
     "@types/jasmine": "~5.1.0",
     "@typescript-eslint/eslint-plugin": "7.11.0",
     "@typescript-eslint/parser": "7.11.0",
+    "angular-cli-ghpages": "^2.0.1",
     "eslint": "8.57.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-config-airbnb-typescript": "^18.0.0",
