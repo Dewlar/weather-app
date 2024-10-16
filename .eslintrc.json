@@ -3,9 +3,11 @@
   "ignorePatterns": [
     "projects/**/*"
   ],
-  "plugins": ["unused-imports", "simple-import-sort"],
+  "plugins": ["unused-imports", "simple-import-sort", "prettier", "@typescript-eslint"],
+  "parser": "@typescript-eslint/parser",
   "parserOptions": {
-    "project": "./tsconfig.json"
+    "project": "./tsconfig.json",
+    "sourceType": "module"
   },
   "overrides": [
     {
@@ -18,7 +20,9 @@
         "airbnb-typescript/base",
         "plugin:@typescript-eslint/recommended",
         "plugin:@angular-eslint/recommended",
-        "plugin:@angular-eslint/template/process-inline-templates"
+        "plugin:@angular-eslint/template/process-inline-templates",
+        "plugin:prettier/recommended",
+        "prettier"
       ],
       "rules": {
         "@typescript-eslint/prefer-readonly": "error",
@@ -58,9 +62,20 @@
       ],
       "extends": [
         "plugin:@angular-eslint/template/recommended",
-        "plugin:@angular-eslint/template/accessibility"
+        "plugin:@angular-eslint/template/accessibility",
+        "plugin:prettier/recommended"
       ],
-      "rules": {}
+      "excludedFiles": [
+        "*inline-template-*.component.html"
+      ],
+      "rules": {
+        "prettier/prettier": [
+          "error",
+          {
+            "parser": "angular"
+          }
+        ]
+      }
     }
   ]
 }
