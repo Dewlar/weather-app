@@ -1,0 +1,46 @@
+<div class="weather-container">
+  @if (!(cities() === null || cities()?.length)) {
+    <span>Nothing found</span>
+  } @else {
+    @if (weatherData(); as weatherData) {
+      <div class="city-info">
+        <h2>{{ weatherData.city.name }}</h2>
+      </div>
+
+      <table class="weather-table">
+        <thead>
+          <tr>
+            <th>Time</th>
+            <th>Temperature</th>
+            <th>Feels Like</th>
+            <th>Weather</th>
+            <th>Precipitation</th>
+            <th>Cloudiness</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (weatherItem of weatherData.list.slice(0, 8); track weatherItem.dt) {
+            <tr>
+              <td>{{ weatherItem.dt_txt | date: 'HH:mm' }}</td>
+
+              <td>{{ weatherItem.main.temp | kelvinToCelsius }}&deg;C</td>
+              <td>{{ weatherItem.main.feels_like | kelvinToCelsius }}&deg;C</td>
+
+              <td>
+                <img
+                  [src]="'http://openweathermap.org/img/wn/' + weatherItem.weather[0].icon + '@2x.png'"
+                  [alt]="weatherItem.weather[0].description"
+                  class="weather-icon"
+                />
+              </td>
+
+              <td>{{ weatherItem.pop * 100 }}%</td>
+
+              <td>{{ weatherItem.clouds.all }}%</td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    }
+  }
+</div>

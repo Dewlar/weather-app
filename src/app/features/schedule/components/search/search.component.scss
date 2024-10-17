@@ -1,0 +1,11 @@
+:host {
+  display: flex;
+}
+
+.search-input {
+  flex: 1;
+  padding: .5rem;
+  border-radius: .5rem;
+  outline: none;
+  border-width: 1px;
+}
