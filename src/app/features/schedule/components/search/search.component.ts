@@ -1,4 +1,5 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { WeatherApiService } from '../../services/weather-api.service';
 
 @Component({
   selector: 'app-search',
@@ -8,4 +9,6 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   styleUrl: './search.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SearchComponent {}
+export class SearchComponent {
+  private readonly weatherApiService = inject(WeatherApiService);
+}
