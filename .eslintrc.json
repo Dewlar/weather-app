@@ -35,6 +35,14 @@
             ]
           }
         ],
+        "class-methods-use-this": [
+          "error",
+          {
+            "exceptMethods": [
+              "transform"
+            ]
+          }
+        ],
         "@typescript-eslint/no-explicit-any": 2,
         "@typescript-eslint/explicit-member-accessibility": ["error", { "accessibility": "explicit" }],
         "import/prefer-default-export": "off",

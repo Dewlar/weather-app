@@ -1,4 +1,4 @@
-export interface CityGeoData {
+export interface CityGeoDataInterface {
   name: string;
   lat: number;
   lon: number;
