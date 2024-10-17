@@ -2,6 +2,10 @@
   <h1>Weather</h1>
   <app-search></app-search>
 </div>
-<div>
-  <app-weather-results></app-weather-results>
+<div class="results-wrapper">
+  @if (!(cities() === null || cities()?.length)) {
+    <span>Nothing found</span>
+  } @else {
+    <app-weather-results></app-weather-results>
+  }
 </div>

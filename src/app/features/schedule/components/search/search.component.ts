@@ -2,9 +2,10 @@ import { ChangeDetectionStrategy, Component, DestroyRef, inject, OnInit } from '
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { debounceTime, distinctUntilChanged, switchMap, tap } from 'rxjs';
+import { debounceTime, distinctUntilChanged, filter, switchMap, tap } from 'rxjs';
 import { UrlParamsService } from '../../../../shared/services/url-params.service';
 import { QueryParams } from '../../enums/query-params.enum';
+import { SearchService } from '../../services/search.service';
 import { WeatherApiService } from '../../services/weather-api.service';
 
 @Component({
@@ -24,6 +25,8 @@ export class SearchComponent implements OnInit {
 
   private readonly urlParamsService = inject(UrlParamsService);
 
+  private readonly searchService = inject(SearchService);
+
   protected searchInput = new FormControl('', { nonNullable: true });
 
   public ngOnInit() {
@@ -37,9 +40,17 @@ export class SearchComponent implements OnInit {
         debounceTime(500),
         distinctUntilChanged(),
         tap((city) => this.urlParamsService.setParam(QueryParams.city, city || null)),
+        filter(Boolean),
         switchMap((city) => this.weatherApiService.getCity(city)),
         takeUntilDestroyed(this.destroy)
       )
-      .subscribe({});
+      .subscribe({
+        next: (cities) => {
+          this.searchService.setSities(cities);
+        },
+        error: ({ message }) => {
+          console.error(message ? `Error: ${message}` : 'Search city failed');
+        },
+      });
   }
 }
