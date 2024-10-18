@@ -28,13 +28,13 @@
 
               <td>
                 <img
-                  [src]="'http://openweathermap.org/img/wn/' + weatherItem.weather[0].icon + '@2x.png'"
+                  [src]="'https://openweathermap.org/img/wn/' + weatherItem.weather[0].icon + '@2x.png'"
                   [alt]="weatherItem.weather[0].description"
                   class="weather-icon"
                 />
               </td>
 
-              <td>{{ weatherItem.pop * 100 }}%</td>
+              <td>{{ weatherItem.pop * 100 | number: '1.0-1' }}%</td>
 
               <td>{{ weatherItem.clouds.all }}%</td>
             </tr>
