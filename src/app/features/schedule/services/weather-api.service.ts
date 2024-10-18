@@ -3,7 +3,7 @@ import { inject, Injectable } from '@angular/core';
 import { CityGeoDataInterface } from '../interfaces/city-geo-data.interface';
 import { WeatherResponse } from '../interfaces/weather.interfaces';
 
-const GEODATA_API_ENDPOINT = 'http://api.openweathermap.org/geo/1.0/direct';
+const GEODATA_API_ENDPOINT = 'https://api.openweathermap.org/geo/1.0/direct';
 const WEATHER_API_ENDPOINT = 'https://api.openweathermap.org/data/2.5/forecast';
 
 @Injectable({
